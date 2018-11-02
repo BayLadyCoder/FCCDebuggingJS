@@ -23,7 +23,6 @@ console.log(a);
 let sumAB = a + b;
 console.log(sumAB);
 
-
 /*
 Debugging: Understanding the Differences between the freeCodeCamp and Browser Console
 
@@ -54,7 +53,6 @@ console.clear();
 // Use console.log() to print the outputOne variable
 
 console.log(outputOne);
-
 
 /*
 Debugging: Use typeof to Check the Type of a Variable
@@ -94,7 +92,6 @@ let payables = 8;
 let netWorkingCapital = receivables - payables;
 console.log(`Net working capital is: ${netWorkingCapital}`);
 
-
 /*
 Debugging: Catch Unclosed Parentheses, Brackets, Braces and Quotes
 
@@ -130,9 +127,8 @@ const allSameQuotes = 'I\'ve had a perfectly wonderful evening, but this wasn\'t
 
 Fix the string so it either uses different quotes for the href value, or escape the existing ones. Keep the double quote marks around the entire string.
 */
-let innerHtml = "<p>Click here to <a href=\"#Home\">return home</a></p>";
+let innerHtml = '<p>Click here to <a href="#Home">return home</a></p>';
 console.log(innerHtml);
-
 
 /*
 Debugging: Catch Use of Assignment Operator Instead of Equality Operator
@@ -160,9 +156,9 @@ let y = 9;
 let result = "to come";
 
 if (x === y) {
-    result = "Equal!";
+  result = "Equal!";
 } else {
-    result = "Not equal!";
+  result = "Not equal!";
 }
 
 console.log(result);
@@ -184,9 +180,9 @@ Fix the code so the variable result is set to the value returned from calling th
 */
 
 function getNine() {
-    let x = 6;
-    let y = 3;
-    return x + y;
+  let x = 6;
+  let y = 3;
+  return x + y;
 }
 
 let result = getNine();
@@ -201,14 +197,13 @@ Continuing the discussion on calling functions, the next bug to watch out for is
 The function raiseToPower raises a base to an exponent. Unfortunately, it's not called properly - fix the code so the value of power is the expected 8.
 */
 function raiseToPower(b, e) {
-    return Math.pow(b, e);
+  return Math.pow(b, e);
 }
 
 let base = 2;
 let exp = 3;
 let power = raiseToPower(base, exp);
 console.log(power);
-
 
 /*
 Debugging: Catch Off By One Errors When Using Indexing
@@ -235,17 +230,16 @@ for (let k = 0; k < len; k++) {
 Fix the two indexing errors in the following function so all the numbers 1 through 5 are printed to the console.
 */
 function countToFive() {
-    let firstFive = "12345";
-    let len = firstFive.length;
-    // Fix the line below
-    for (let i = 0; i < len; i++) {
-        // Do not alter code below this line
-        console.log(firstFive[i]);
-    }
+  let firstFive = "12345";
+  let len = firstFive.length;
+  // Fix the line below
+  for (let i = 0; i < len; i++) {
+    // Do not alter code below this line
+    console.log(firstFive[i]);
+  }
 }
 
 countToFive();
-
 
 /*
 Debugging: Use Caution When Reinitializing Variables Inside a Loop
@@ -258,21 +252,45 @@ Printing variable values with each cycle of your loop by using console.log() can
 The following function is supposed to create a two-dimensional array with m rows and n columns of zeroes. Unfortunately, it's not producing the expected output because the row variable isn't being reinitialized (set back to an empty array) in the outer loop. Fix the code so it returns a correct 3x2 array of zeroes, which looks like [[0, 0], [0, 0], [0, 0]].
 */
 function zeroArray(m, n) {
-    // Creates a 2-D array with m rows and n columns of zeroes
-    let newArray = [];
-    let row = [];
-    for (let i = 0; i < m; i++) {
-        // Adds the m-th row into newArray
-        row = [];
-        for (let j = 0; j < n; j++) {
-            // Pushes n zeroes into the current row to create the columns 
-            row.push(0);
-        }
-        // Pushes the current row, which now has n zeroes in it, to the array
-        newArray.push(row);
+  // Creates a 2-D array with m rows and n columns of zeroes
+  let newArray = [];
+  let row = [];
+  for (let i = 0; i < m; i++) {
+    // Adds the m-th row into newArray
+    row = [];
+    for (let j = 0; j < n; j++) {
+      // Pushes n zeroes into the current row to create the columns
+      row.push(0);
     }
-    return newArray;
+    // Pushes the current row, which now has n zeroes in it, to the array
+    newArray.push(row);
+  }
+  return newArray;
 }
 
 let matrix = zeroArray(3, 2);
 console.log(matrix);
+
+/*
+Debugging: Prevent Infinite Loops with a Valid Terminal Condition
+
+The final topic is the dreaded infinite loop. Loops are great tools when you need your program to run a code block a certain number of times or until a condition is met, but they need a terminal condition that ends the looping. Infinite loops are likely to freeze or crash the browser, and cause general program execution mayhem, which no one wants.
+
+There was an example of an infinite loop in the introduction to this section - it had no terminal condition to break out of the while loop inside loopy(). Do NOT call this function!
+
+function loopy() {
+  while(true) {
+    console.log("Hello, world!");
+  }
+}
+It's the programmer's job to ensure that the terminal condition, which tells the program when to break out of the loop code, is eventually reached. One error is incrementing or decrementing a counter variable in the wrong direction from the terminal condition. Another one is accidentally resetting a counter or index variable within the loop code, instead of incrementing or decrementing it.
+
+
+The myFunc() function contains an infinite loop because the terminal condition i != 4 will never evaluate to false (and break the looping) - i will increment by 2 each pass, and jump right over 4 since i is odd to start. Fix the comparison operator in the terminal condition so the loop only runs for i less than or equal to 4.
+*/
+
+function myFunc() {
+  for (let i = 1; i <= 4; i += 2) {
+    console.log("Still going!");
+  }
+}
